@@ -11,14 +11,13 @@ export default () => {
   const dbh = firebase.firestore();
   const result = [];
 
-  const searchApi = (searchTerm) => {
-        if(searchTerm===''){
+  const searchApi = (service,location) => {
+        if(service===''){
           const response = dbh.collection("jobs").where("approval","==",true);
           searchResult(response);
         }
         else{
-          searchTerm = searchTerm.charAt(0).toUpperCase() + searchTerm.substring(1);
-          const response = dbh.collection("jobs").where("approval","==",true).where("jobtype","==",searchTerm);
+          const response = dbh.collection("jobs").where("approval","==",true).where("jobtype","==",service).where("location","==",location);
           searchResult(response);
         }
 
@@ -45,7 +44,7 @@ export default () => {
   // Call searchApi when component is first rendered. BAD CODE!
   //searchApi('pasta');
   useEffect(() =>{
-    searchApi('');
+    searchApi('','');
   }, []);
 
   return [searchApi, results, errorMessage];

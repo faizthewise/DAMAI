@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
-import {FontAwesome} from '@expo/vector-icons'
+import {FontAwesome} from '@expo/vector-icons';
 
 const SearchBar = ({term, onTermChange, onTermSubmit}) => {
   return (
