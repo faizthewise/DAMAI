@@ -10,6 +10,7 @@ import HELoading from './src/screens/HELoading';
 import AddJob from './src/screens/AddJob';
 import JobDetailScreen from './src/screens/JobDetailScreen';
 import JobApplicants from './src/screens/JobApplicants';
+import ApplicantDetailsScreen from './src/screens/ApplicantDetailsScreen';
 
 
 const firebaseConfig = {
@@ -36,12 +37,13 @@ const navigator = createStackNavigator(
   HELoading : HELoading,
   AddJob : AddJob,
   JobDetail : JobDetailScreen,
-  JobApplicants : JobApplicants
+  JobApplicants : JobApplicants,
+  ApplicantDetails : ApplicantDetailsScreen
 
 
 },
 {
-  initialRouteName : 'UserLoading',
+  initialRouteName : 'Landing',
 
   defaultNavigationOptions: {
     header:null

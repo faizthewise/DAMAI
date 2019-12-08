@@ -1,18 +1,18 @@
 import React, {useState,useEffect} from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase';
 import ApplicantDetail from '../components/ApplicantDetail';
 
 const JobApplicants = ({navigation}) => {
-  const id = navigation.getParam('id');
+  const jobID = navigation.getParam('id');
   [result,setResult] = useState([]);
   [applicants, setApplicants] = useState([]);
 
 
 
-  const getResult = (id) => {
+  const getResult = (jobID) => {
     const dbh = firebase.firestore();
-    dbh.collection("jobs").doc(id).get().then(function(doc){
+    dbh.collection("jobs").doc(jobID).get().then(function(doc){
       setResult(doc.data());
       setApplicants(result.Applicants);
 
@@ -22,7 +22,7 @@ const JobApplicants = ({navigation}) => {
   }
 
   useEffect(()=>{
-    getResult(id)
+    getResult(jobID)
   },[]);
 
   if(!result){
@@ -60,7 +60,12 @@ const JobApplicants = ({navigation}) => {
       renderItem={({item}) => {
         return(
           <View>
-            <ApplicantDetail result={item} />
+            <TouchableOpacity onPress={()=> {
+              console.log("Pressed => applicantID => ", item);
+              navigation.navigate('ApplicantDetails',{applicantID:item,jobID:jobID});
+            }}>
+              <ApplicantDetail result={item} />
+            </TouchableOpacity>
           </View>
         );
       }}

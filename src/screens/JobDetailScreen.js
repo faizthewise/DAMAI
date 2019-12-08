@@ -34,6 +34,7 @@ const JobDetail = ({navigation}) => {
           Applicants: firebase.firestore.FieldValue.arrayUnion(uid)
         })
         .then(function(){
+          navigation.goBack();
           Alert.alert('Applied succesfully');
           applied = false;
         })

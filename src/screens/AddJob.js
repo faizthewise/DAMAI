@@ -47,9 +47,10 @@ const options ={
 
 
 
-export default class AddJob extends Component {
+export default class AddJob extends React.Component {
 
   setDB = (value,called) =>{
+    const { goBack } = this.props.navigation;
     var jobID           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
@@ -60,11 +61,12 @@ export default class AddJob extends Component {
     var uid = '';
     firebase.auth().onAuthStateChanged((userData) => {
       if(userData && called){
-        uid = userData.uid;
 
+        uid = userData.uid;
         const dbh = firebase.firestore();
         var docRef = dbh.collection("users").doc(uid);
         docRef.get().then(function(doc){
+
 
               const info = doc.data();
               console.log("info =>",info);
@@ -85,6 +87,7 @@ export default class AddJob extends Component {
 
               })
               .then(function() {
+                goBack();
                 console.log('Added succesfully');
                 Alert.alert('Service requested succesfully');
                 called=false;
