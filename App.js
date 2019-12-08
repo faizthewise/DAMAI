@@ -11,6 +11,7 @@ import AddJob from './src/screens/AddJob';
 import JobDetailScreen from './src/screens/JobDetailScreen';
 import JobApplicants from './src/screens/JobApplicants';
 import ApplicantDetailsScreen from './src/screens/ApplicantDetailsScreen';
+import EditJob from './src/screens/EditJob';
 
 
 const firebaseConfig = {
@@ -38,7 +39,8 @@ const navigator = createStackNavigator(
   AddJob : AddJob,
   JobDetail : JobDetailScreen,
   JobApplicants : JobApplicants,
-  ApplicantDetails : ApplicantDetailsScreen
+  ApplicantDetails : ApplicantDetailsScreen,
+  EditJob: EditJob
 
 
 },

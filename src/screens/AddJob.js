@@ -43,10 +43,6 @@ const options ={
   }
 }
 
-
-
-
-
 export default class AddJob extends React.Component {
 
   setDB = (value,called) =>{
@@ -128,7 +124,7 @@ export default class AddJob extends React.Component {
   <ScrollView style={styles.container}>
     <Text style={styles.title}>Add new job</Text>
     <Form type={Job} options={options} ref={c => this._form = c}/>
-    <SolidButton text='Create Job' onPress={this.handleSubmit} />
+    <SolidButton text="Request Service" onPress={this.handleSubmit}/>
   </ScrollView>
   );
 }
