@@ -16,12 +16,10 @@ const HELoginScreen = ({navigation}) => {
       .auth()
       .signInWithEmailAndPassword(email,password)
       .then(() => {
-        console.log('Login sudah');
         navigation.navigate('HELoading');
 
       })
       .catch(error => {
-        console.log('error baby');
         setError('Wrong password or email');
       })
   }

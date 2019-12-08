@@ -23,9 +23,9 @@ const JobDetail = ({navigation}) => {
     return null;
   }
 
-  const applyJob = () => {
+  const applyJob = (applied) => {
     firebase.auth().onAuthStateChanged((userData) => {
-      if(userData){
+      if(userData && applied){
         const uid = userData.uid;
 
         const dbh = firebase.firestore();
@@ -34,8 +34,8 @@ const JobDetail = ({navigation}) => {
           Applicants: firebase.firestore.FieldValue.arrayUnion(uid)
         })
         .then(function(){
-          console.log('Applied succesfully');
           Alert.alert('Applied succesfully');
+          applied = false;
         })
         .catch(function(){
           console.log("Error updating document: ", error);
@@ -51,7 +51,10 @@ const JobDetail = ({navigation}) => {
     <Text>{result.jobtype}</Text>
     <Text>{result.location}</Text>
     <Text>{result.jobdescription}</Text>
-    <SolidButton text='Apply' onPress={()=> applyJob()} />
+    <SolidButton text='Apply' onPress={()=> {
+      const applied = true;
+      applyJob(applied);
+    }} />
   </View>
   );
 };

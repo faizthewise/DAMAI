@@ -49,7 +49,7 @@ const options ={
 
 export default class AddJob extends Component {
 
-  setDB = (value) =>{
+  setDB = (value,called) =>{
     var jobID           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
@@ -59,7 +59,7 @@ export default class AddJob extends Component {
 
     var uid = '';
     firebase.auth().onAuthStateChanged((userData) => {
-      if(userData){
+      if(userData && called){
         uid = userData.uid;
 
         const dbh = firebase.firestore();
@@ -80,12 +80,14 @@ export default class AddJob extends Component {
                 image: info.image,
                 rating: info.rating,
                 employerid:uid,
-                jobid: jobID
+                jobid: jobID,
+                vacant:true
 
               })
               .then(function() {
                 console.log('Added succesfully');
                 Alert.alert('Service requested succesfully');
+                called=false;
               })
               .catch(function(error){
                 console.log("Error occured ", error);
@@ -107,7 +109,8 @@ export default class AddJob extends Component {
     const value = this._form.getValue();
 
     if (value != null){
-      this.setDB(value);
+      const called=true;
+      this.setDB(value,called);
       console.log('Value =>', value);
 
     }

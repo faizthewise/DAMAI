@@ -13,11 +13,11 @@ export default () => {
 
   const searchApi = (service,location) => {
         if(service===''){
-          const response = dbh.collection("jobs").where("approval","==",true);
+          const response = dbh.collection("jobs").where("approval","==",true).where("vacant","==",true);
           searchResult(response);
         }
         else{
-          const response = dbh.collection("jobs").where("approval","==",true).where("jobtype","==",service).where("location","==",location);
+          const response = dbh.collection("jobs").where("approval","==",true).where("vacant","==",true).where("jobtype","==",service).where("location","==",location);
           searchResult(response);
         }
 

@@ -12,9 +12,7 @@ const ProfileScreen = ({navigation}) =>  {
     firebase.auth().onAuthStateChanged(user => {
        if(user){
          const uid=firebase.auth().currentUser.uid;
-         // findProfile(uid);
          findProfile(uid);
-         // console.log(this.setState({userProfile}));
 
        }
        else{
@@ -22,19 +20,14 @@ const ProfileScreen = ({navigation}) =>  {
        }
      })
 
-    // var user = firebase.auth().currentUser;
-    // console.log(user);
-    // const uid = user.uid;
-    // const {userProfile} = findProfile(uid);
-    // this.setState({userProfile});
   }
 
   useEffect(()=>{
     checkLogin();
-  },[]);
+  },userProfile);
 
   const findProfile = (uid) =>{
-    console.log(uid);
+    console.log("findProfile=> ",uid);
     const dbh = firebase.firestore();
     const response = dbh.collection("users").doc(uid).get().then(function (doc){
       setUserProfile(doc.data());
@@ -63,6 +56,7 @@ const ProfileScreen = ({navigation}) =>  {
 
 const handleLogout = () =>{
   firebase.auth().signOut();
+
 }
 const styles= StyleSheet.create({});
 
