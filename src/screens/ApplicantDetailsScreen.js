@@ -26,30 +26,8 @@ const ApplicantDetailsScreen = ({navigation}) => {
     return null;
   }
 
-  const assignJob = () => {
 
-    docRef.set({
-      assignedTo:applicantID,
-      vacant:false
-    },{merge:true}).then(()=>{
-      navigation.goBack();
-      Alert.alert('Successful!');
-    }).catch(function(error){
-      console.log("Error ==>", error)
-    });
 
-  }
-
-  const rejectApplicant = () => {
-    docRef.update({
-      Applicants : firebase.firestore.FieldValue.arrayRemove(applicantID)
-    }).then(()=>{
-      navigation.goBack();
-      Alert.alert('Successful!');
-    }).catch(function(error){
-      console.log("Error ==>", error)
-    });
-  }
 
   return (
   <View style={{flex:1,marginTop:30}}>
@@ -61,12 +39,41 @@ const ApplicantDetailsScreen = ({navigation}) => {
     <Text>{result.rating}</Text>
 
     <View style={{flex:1,flexDirection:'row'}} >
-      <SolidButton text="Accept" onPress={()=> assignJob()}/>
-      <SolidButton text="Reject" onPress={() => rejectApplicant()}/>
+      <SolidButton text="Accept" onPress={()=> assignJob(jobID,applicantID,{navigation})}/>
+      <SolidButton text="Reject" onPress={() => rejectApplicant(jobID,applicantID,{navigation})}/>
     </View>
   </View>
   );
 };
+
+const assignJob = (jobID,applicantID,{navigation}) => {
+  const dbh = firebase.firestore();
+  const docRef =   dbh.collection("jobs").doc(jobID);
+
+  docRef.set({
+    assignedTo:applicantID,
+    vacant:false
+  },{merge:true}).then(()=>{
+    navigation.goBack();
+    Alert.alert('Successful!');
+  }).catch(function(error){
+    console.log("Error ==>", error)
+  });
+
+}
+
+const rejectApplicant = (jobID,applicantID,{navigation}) => {
+  const dbh = firebase.firestore();
+  const docRef =   dbh.collection("jobs").doc(jobID);
+    docRef.update({
+      Applicants : firebase.firestore.FieldValue.arrayRemove(applicantID)
+    }).then(()=>{
+      navigation.goBack();
+      Alert.alert('Successful!');
+    }).catch(function(error){
+      console.log("Error ==>", error)
+    });
+  }
 
 const styles= StyleSheet.create({});
 

@@ -7,23 +7,43 @@ const JobApplicants = ({navigation}) => {
   const jobID = navigation.getParam('id');
   [result,setResult] = useState([]);
   [applicants, setApplicants] = useState([]);
+  [assigned, setAssigned] = useState([]);
+  const dbh = firebase.firestore();
 
 
 
-  const getResult = (jobID) => {
-    const dbh = firebase.firestore();
+
+
+  const getResult = () => {
     dbh.collection("jobs").doc(jobID).get().then(function(doc){
       setResult(doc.data());
       setApplicants(result.Applicants);
+      console.log("This is chosen =>",doc.data());
+      const chosen = result.assignedTo;
 
+      getAssigned(chosen);
 
     });
 
   }
 
+  const getAssigned = (chosen) =>{
+    console.log("masuk assigned");
+    if(chosen){
+
+    dbh.collection("users").doc(chosen).get().then(function(doc){
+      setAssigned(doc.data());
+      console.log("Assigned user =>",assigned);
+    }).catch(function(error){
+      console.log("Error =>", error);
+    });
+    }
+  }
+
   useEffect(()=>{
-    getResult(jobID)
+    getResult()
   },[]);
+
 
   if(!result){
     return null;
@@ -53,23 +73,39 @@ const JobApplicants = ({navigation}) => {
         <Text style={styles.text}>{result.jobdescription}</Text>
       </View>
     </View>
-    <Text style={{fontSize:24,fontWeight:'bold', marginVertical:20}}>List of Applicants</Text>
-    <FlatList
-      data={applicants}
-      keyExtractor={(applicants)=> applicants}
-      renderItem={({item}) => {
-        return(
-          <View>
-            <TouchableOpacity onPress={()=> {
-              console.log("Pressed => applicantID => ", item);
-              navigation.navigate('ApplicantDetails',{applicantID:item,jobID:jobID});
-            }}>
-              <ApplicantDetail result={item} />
-            </TouchableOpacity>
-          </View>
-        );
-      }}
-    />
+    {result.vacant ?
+        <View>
+          <Text style={{fontSize:24,fontWeight:'bold', marginVertical:20}}>List of Applicants</Text>
+          <FlatList
+            data={applicants}
+            keyExtractor={(applicants)=> applicants}
+            renderItem={({item}) => {
+              return(
+                <View>
+                  <TouchableOpacity onPress={()=> {
+                    navigation.navigate('ApplicantDetails',{applicantID:item,jobID:jobID});
+                  }}>
+                    <ApplicantDetail result={item} />
+                  </TouchableOpacity>
+                </View>
+              );
+            }
+          }
+          />
+      </View> :
+      <View>
+        <Text style={{fontSize:24,fontWeight:'bold',marginVertical:20}}>Service Assigned To</Text>
+        <Text>{assigned.fullname}</Text>
+        <Text>{assigned.city}</Text>
+        <Text>{assigned.email}</Text>
+        <Text>{assigned.rating}</Text>
+      </View>
+
+
+
+    }
+
+
   </View>
   );
 };
