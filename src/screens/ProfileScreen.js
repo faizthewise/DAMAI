@@ -48,7 +48,7 @@ const ProfileScreen = ({navigation}) =>  {
   const findProfile = (uid) =>{
     console.log("findProfile=> ",uid);
     const dbh = firebase.firestore();
-    const response = dbh.collection("users").doc(uid).get().then(function (doc){
+    const response = dbh.collection("users").doc(uid).onSnapshot(function(doc){
       setUserProfile(doc.data());
     })
   }

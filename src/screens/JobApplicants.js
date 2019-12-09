@@ -28,14 +28,14 @@ const JobApplicants = ({navigation}) => {
   ]
 
   const getResult = () => {
-    dbh.collection("jobs").doc(jobID).get().then(function(doc){
+    dbh.collection("jobs").doc(jobID).onSnapshot(function(doc){
+      console.log("changes");
       setResult(doc.data());
       setApplicants(result.Applicants);
       console.log("This is chosen =>",doc.data());
       const chosen = result.assignedTo;
 
       getAssigned(chosen);
-
     });
 
   }
@@ -44,11 +44,9 @@ const JobApplicants = ({navigation}) => {
     console.log("masuk assigned");
     if(chosen){
 
-    dbh.collection("users").doc(chosen).get().then(function(doc){
+    dbh.collection("users").doc(chosen).onSnapshot(function(doc){
       setAssigned(doc.data());
-      console.log("Assigned user =>",assigned);
-    }).catch(function(error){
-      console.log("Error =>", error);
+      console.log("changes =>");
     });
     }
   }

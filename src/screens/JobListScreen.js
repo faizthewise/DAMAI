@@ -1,4 +1,4 @@
-import React, {useState, Component} from 'react';
+import React, {useState,useEffect, Component} from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as firebase from 'firebase';
@@ -20,10 +20,12 @@ const toggleDrawer = (toggle) => {
 }
 
 const JobListScreen = ({navigation}) => {
-  const[term,setTerm] = useState('');
-  const[openDrawer,setOpenDrawer]=useState(false);
-  const[searchApi,results,errorMessage] = useResults();
 
+  const[term,setTerm] = useState([]);
+  const[openDrawer,setOpenDrawer]=useState(false);
+  const[searchApi,results,errorMessage,changes] = useResults();
+
+  console.log("Results =>",results);
 
 
   const drawerContent = () => {
@@ -83,6 +85,10 @@ const [location,setLocation] = useState({
       id:6,
       name:"Kuala Lumpur"
     },
+    {
+      id:7,
+      name:"Sepang"
+    }
   ],
   placeHolderText: "Select service required",
   selectedText: ""

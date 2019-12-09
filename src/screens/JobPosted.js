@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { ScrollView, Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 import useResultsHE from '../hooks/useResultsHE';
 import {AntDesign} from '@expo/vector-icons';

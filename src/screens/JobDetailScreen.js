@@ -9,8 +9,8 @@ const JobDetail = ({navigation}) => {
 
   const getResult = (id) => {
     const dbh = firebase.firestore();
-    dbh.collection("jobs").doc(id).get().then(function(doc){
-      setResult(doc.data());
+    dbh.collection("jobs").doc(id).onSnapshot(function(doc){
+        setResult(doc.data());
     });
 
   }

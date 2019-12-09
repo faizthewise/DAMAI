@@ -13,7 +13,7 @@ const ApplicantDetailsScreen = ({navigation}) => {
 
   const applicantProfile = () =>{
 
-    dbh.collection("users").doc(applicantID).get().then(function(doc){
+    dbh.collection("users").doc(applicantID).onSnapshot(function(doc){
       setResult(doc.data());
     });
   }
