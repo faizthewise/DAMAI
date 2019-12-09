@@ -14,23 +14,26 @@ const ProfileScreen = ({navigation}) =>  {
     {
       text: "Edit Profile",
       icon: <AntDesign name="pluscircle" />,
-      position: 1
+      position: 1,
+      name: "edit"
     },
     {
       text: "Request Job",
       icon: <AntDesign name="pluscircle" />,
-      position: 2
+      position: 2,
+      name: "request"
     },
     {
       text: "Logout",
       icon: <AntDesign name="pluscircle" />,
-      position:3
+      position:3,
+      name: "logout"
     }
   ]
   const checkLogin = () =>{
     firebase.auth().onAuthStateChanged(user => {
        if(user){
-         const uid=firebase.auth().currentUser.uid;
+         const uid = firebase.auth().currentUser.uid;
          findProfile(uid);
 
        }
@@ -46,12 +49,12 @@ const ProfileScreen = ({navigation}) =>  {
   },userProfile);
 
   const findProfile = (uid) =>{
-    console.log("findProfile=> ",uid);
     const dbh = firebase.firestore();
     const response = dbh.collection("users").doc(uid).onSnapshot(function(doc){
       setUserProfile(doc.data());
     })
   }
+
 
     return(
       // console.log({userProfile});
@@ -66,7 +69,18 @@ const ProfileScreen = ({navigation}) =>  {
   <FloatingAction
       actions={actions}
       onPressItem={name => {
-        console.log(`selected button: ${name}`);
+        switch(name){
+          case 'edit':
+            navigation.navigate('EditProfile');
+            break;
+          case 'request':
+            break;
+          case 'logout':
+            handleLogout();
+            break;
+          default:
+            return;
+        }
       }}
     />
   </View>

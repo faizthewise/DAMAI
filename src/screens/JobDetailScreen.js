@@ -30,8 +30,10 @@ const JobDetail = ({navigation}) => {
 
         const dbh = firebase.firestore();
 
+
         dbh.collection("jobs").doc(id).update({
-          Applicants: firebase.firestore.FieldValue.arrayUnion(uid)
+          Applicants: firebase.firestore.FieldValue.arrayUnion(uid),
+          appcounter: result.appcounter + 1
         })
         .then(function(){
           navigation.goBack();

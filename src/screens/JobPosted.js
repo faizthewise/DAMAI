@@ -8,9 +8,9 @@ const JobPosted = ({navigation}) => {
 
 const[results,errorMessage] = useResultsHE();
 
-  const filterResult = (vacant) => {
+  const filterResult = (status) => {
     return results.filter(results => {
-      return results.vacant == vacant;
+      return results.status == status;
     });
   }
   return (
@@ -20,8 +20,9 @@ const[results,errorMessage] = useResultsHE();
     </TouchableOpacity>
       <ScrollView style={{alignItems:'center',paddingTop:40}}>
       <Text style={{fontSize:18,fontWeight:'bold',alignSelf:'center',marginVertical:20}}>Services You Requested</Text>
-      <JobList results={filterResult(true)} title="Vacant" />
-      <JobList results={filterResult(false)} title="Assigned" />
+      <JobList results={filterResult("vacant")} title="Vacant" />
+      <JobList results={filterResult("ongoing")} title="On Going" />
+      <JobList results={filterResult("complete")} title="Completed" />
 
       </ScrollView>
 

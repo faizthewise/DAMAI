@@ -21,11 +21,51 @@ const toggleDrawer = (toggle) => {
 
 const JobListScreen = ({navigation}) => {
 
-  const[term,setTerm] = useState([]);
+  const[results,setResults]=useState([]);
+  const[errorMessage,setErrorMessage]=useState('');
   const[openDrawer,setOpenDrawer]=useState(false);
-  const[searchApi,results,errorMessage,changes] = useResults();
+  const dbh = firebase.firestore();
+  var result = [];
 
-  console.log("Results =>",results);
+  useEffect(()=>{
+    searchApi('','')
+  },[]);
+  const searchApi = (service,location) =>{
+    console.log("SerachAPI called");
+      if(service===''){
+        const response = dbh.collection("jobs").where("approval","==",true).where("vacant","==",true);
+        response.onSnapshot(function(querySnapshot){
+
+            querySnapshot.forEach(function(doc){
+                // console.log(doc.id, "=>", doc.data());
+                console.log("Changing");
+                result.push(doc.data());
+            });
+            console.log('Result =>',result);
+            //console.log(result);
+            setResults(result);
+
+
+    });
+      }
+      else{
+        const response = dbh.collection("jobs").where("approval","==",true).where("vacant","==",true).where("jobtype","==",service).where("location","==",location);
+        response.onSnapshot(function(querySnapshot){
+
+
+            querySnapshot.forEach(function(doc){
+                // console.log(doc.id, "=>", doc.data());
+                console.log("Changing");
+                result.push(doc.data());
+            });
+            console.log('Result =>',result);
+            //console.log(result);
+            setResults(result);
+
+
+    });
+      }
+  }
 
 
   const drawerContent = () => {
@@ -165,7 +205,7 @@ const getValue = () =>{
           selectedValue={(index, item) => selectedLocation(index, item)}
         />
     <SolidButton text="Search" onPress={() => getValue()}/>
-
+    <SolidButton text="Reset" onPress={() => searchApi('','')}/>
 
     </View>
   );

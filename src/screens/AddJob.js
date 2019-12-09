@@ -79,7 +79,7 @@ export default class AddJob extends React.Component {
                 rating: info.rating,
                 employerid:uid,
                 jobid: jobID,
-                vacant:true
+                status:"vacant"
 
               })
               .then(function() {

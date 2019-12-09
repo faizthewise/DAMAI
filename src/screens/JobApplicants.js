@@ -31,6 +31,7 @@ const JobApplicants = ({navigation}) => {
     dbh.collection("jobs").doc(jobID).onSnapshot(function(doc){
       console.log("changes");
       setResult(doc.data());
+      console.log("Number of applicants =>",result.Applicants.length);
       setApplicants(result.Applicants);
       console.log("This is chosen =>",doc.data());
       const chosen = result.assignedTo;
@@ -85,7 +86,7 @@ const JobApplicants = ({navigation}) => {
         <Text style={styles.text}>{result.jobdescription}</Text>
       </View>
     </View>
-    {result.vacant ?
+    {result.status=="vacant" ?
         <View>
           <Text style={{fontSize:24,fontWeight:'bold', marginVertical:20}}>List of Applicants</Text>
           <FlatList
