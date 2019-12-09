@@ -1126,6 +1126,15 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@react-native-community/art@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@react-native-community/art/-/art-1.0.3.tgz#13c68d86e75d2f7cb199f58cce7a4e5ff395223a"
+  integrity sha512-gCgCBDVkpmcCzI+j6+Jv4fNvxNjAWZ7s8dDZEn52K2f5lmtdD/DV/64dZ1AyHHgA9BuDLOtRKm8QJE0DY88rgA==
+  dependencies:
+    art "^0.10.3"
+    invariant "^2.2.4"
+    prop-types "^15.7.2"
+
 "@react-native-community/cli@^1.2.1":
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli/-/cli-1.11.2.tgz#b14967f24a389f5a16889a747345cf0e5757a2f1"
@@ -1466,7 +1475,7 @@ array-unique@^0.3.2:
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
   integrity sha1-qJS3XUvE9s1nnvMkSp/Y9Gri1Cg=
 
-art@^0.10.0:
+art@^0.10.0, art@^0.10.3:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/art/-/art-0.10.3.tgz#b01d84a968ccce6208df55a733838c96caeeaea2"
   integrity sha512-HXwbdofRTiJT6qZX/FnchtldzJjS3vkLJxQilc3Xj+ma2MXjY4UAyQ0ls1XZYVnDvVIBiFZbC6QsvtW86TD6tQ==
@@ -2337,6 +2346,11 @@ expo-font@~7.0.0:
   integrity sha512-OVlUydfexjq1u57Xlymcx5egfFF2WZ5MXkg3GGjHyiSMfp09inZ7OzAu+O/TXjxjlaq9d6vBXiwVxqQoUIlx1Q==
   dependencies:
     fontfaceobserver "^2.1.0"
+
+expo-image-picker@~7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-7.0.0.tgz#e4a5a52bd6f9655f75ecf3cc866aa9bb0c99e24b"
+  integrity sha512-LeGdAqbeuB2KsT369ns1kDtCGbyDCmY2gIFlf/rsD3+UmagRFX9emZLGPEnUNdCWXoctSejjFwxDnCUtpvL6yw==
 
 expo-keep-awake@~7.0.0:
   version "7.0.0"
@@ -4597,6 +4611,14 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
+prop-types@15.6.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+  integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
@@ -4742,6 +4764,11 @@ react-native-firebase@^5.5.6:
     opencollective-postinstall "^2.0.0"
     prop-types "^15.7.2"
 
+react-native-floating-action@^1.19.1:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/react-native-floating-action/-/react-native-floating-action-1.19.1.tgz#fc3dcd0441ecbaf2d870b71f6db27f2db0f811b3"
+  integrity sha512-6zgiCJyV63TOxpDKK+OxzhghMcBSn1Qhjb8p8TrfrUGAkzh7gQcmNN4ahq1CVbrN0ZpKhWET68WeifisYnQWyg==
+
 react-native-gesture-handler@~1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.3.0.tgz#d0386f565928ccc1849537f03f2e37fd5f6ad43f"
@@ -4750,6 +4777,19 @@ react-native-gesture-handler@~1.3.0:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
     prop-types "^15.5.10"
+
+react-native-image-picker@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-1.1.0.tgz#c2a0523886edb4cf2cdc008ad0a71433142a4d53"
+  integrity sha512-/KjHf4NNAjl6XM7FQuqvGDz1wB9sRdLf86+2yksLW/QTRR7CitX4TLCM8ZF9CX6Y0MsCTndkZia3zWE+nt/GiA==
+
+react-native-progress@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-4.0.2.tgz#4a19178b2b214c831a1375a60a54acae1fd2d843"
+  integrity sha512-oAnpF8zIMTPa9czQ5lYlSn/EO+mYkjf3LTMtCqt57yXkTrX1d89iUOTOSIEKLDtrH3e7iVdYR//2nizPPQejbQ==
+  dependencies:
+    "@react-native-community/art" "^1.0.3"
+    prop-types "^15.7.2"
 
 react-native-reanimated@~1.2.0:
   version "1.2.0"
@@ -4769,6 +4809,13 @@ react-native-safe-area-view@^0.14.1, react-native-safe-area-view@^0.14.6:
   integrity sha512-tOxHGQUN83MTmQB4ghoQkibqOdGiX4JQEmeyEv96MKWO/x8T2PJv84ECUos9hD3blPRQwVwSpAid1PPPhrVEaw==
   dependencies:
     debounce "^1.2.0"
+
+react-native-side-drawer@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-side-drawer/-/react-native-side-drawer-1.2.5.tgz#2d72be8c524cab274e125282f5393ff5c592cfcc"
+  integrity sha512-gQdQv6OJundBR+d/FJGqqb3eBukbjV0LuC+tuPm0r4lR0HTO+8iPpFElXdvQ6breqNJNXRMemVvIydZu1OhpHA==
+  dependencies:
+    prop-types "15.6.2"
 
 react-native-tab-view@^2.9.0:
   version "2.10.0"
@@ -5081,6 +5128,13 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
+
+rn-modal-picker@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/rn-modal-picker/-/rn-modal-picker-0.2.7.tgz#2dc1dc4b186e5ef3d00122953b6ac4c831cf7388"
+  integrity sha512-eUON+CnsthuSHOteH07tiJrdayrw/lw2rhLhP+IuGxiHW7kq/8sQ0NTEbIXTfYwPThLLJbQIG5YB9B2rr/zD7Q==
+  dependencies:
+    prop-types "15.6.2"
 
 rsvp@^3.3.3:
   version "3.6.2"
@@ -5524,6 +5578,25 @@ tar@^4, tar@^4.4.2:
     mkdirp "^0.5.0"
     safe-buffer "^5.1.2"
     yallist "^3.0.3"
+
+tcomb-form-native@^0.6.20:
+  version "0.6.20"
+  resolved "https://registry.yarnpkg.com/tcomb-form-native/-/tcomb-form-native-0.6.20.tgz#81771faf86536a5d4c0f492885eb229324d47ea5"
+  integrity sha512-tuvLmdii2zvkevzFKMS1lYbmE5BeKuRF+sokVqllfjwrViLjgdSCD2Y8WZHUYbUMTbBfEUF65F0vd5zP+Owr2Q==
+  dependencies:
+    tcomb-validation "^3.0.0"
+
+tcomb-validation@^3.0.0:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/tcomb-validation/-/tcomb-validation-3.4.1.tgz#a7696ec176ce56a081d9e019f8b732a5a8894b65"
+  integrity sha512-urVVMQOma4RXwiVCa2nM2eqrAomHROHvWPuj6UkDGz/eb5kcy0x6P0dVt6kzpUZtYMNoAqJLWmz1BPtxrtjtrA==
+  dependencies:
+    tcomb "^3.0.0"
+
+tcomb@^3.0.0:
+  version "3.2.29"
+  resolved "https://registry.yarnpkg.com/tcomb/-/tcomb-3.2.29.tgz#32404fe9456d90c2cf4798682d37439f1ccc386c"
+  integrity sha512-di2Hd1DB2Zfw6StGv861JoAF5h/uQVu/QJp2g8KVbtfKnoHdBQl5M32YWq6mnSYBQ1vFFrns5B1haWJL7rKaOQ==
 
 temp@0.8.3:
   version "0.8.3"

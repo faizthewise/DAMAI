@@ -24,7 +24,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+	  "infoPlist" : {
+			"NSCameraUsageDescription": "This app would like to use your camera",
+			"NSPhotoLibraryUsageDescription" : "This app would like access to your photo gallery",
+			"NSPhotoLibraryAddUsageDescription" : "This app would like to save photos to your photo gallery",
+			"NSMicrophoneUsageDescriptio" : "would like to use your microphone"
+			
+	  }
     }
   }
 }

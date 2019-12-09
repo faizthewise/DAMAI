@@ -8,7 +8,7 @@ const ProfileDetail = ({results}) => {
   // console.log(results);
   return (
   <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-    <Image source={{uri:results.image}} style ={{height:130,width:130,borderRadius:65}} />
+
     <Text style={{fontWeight:'bold',fontSize:16,marginTop:20}}>{results.fullname}</Text>
 
     <View style={styles.box1}>
