@@ -121,7 +121,7 @@ export default class AddJob extends React.Component {
 
   render(){
   return (
-  <ScrollView style={styles.container}>
+  <ScrollView contentContainerStyle={styles.container}>
     <Text style={styles.title}>Add new job</Text>
     <Form type={Job} options={options} ref={c => this._form = c}/>
     <SolidButton text="Request Service" onPress={this.handleSubmit}/>

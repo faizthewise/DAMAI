@@ -30,7 +30,7 @@ export default createBottomTabNavigator(
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === 'ProfileScreen') {
-          iconName ='ios-person';
+          iconName ='ios-body';
         } else if (routeName === 'JobPosted') {
           iconName = 'ios-list-box';
         }

@@ -52,7 +52,7 @@ const assignJob = (jobID,applicantID,{navigation}) => {
 
   docRef.set({
     assignedTo:applicantID,
-    vacant:false
+    status:'ongoing'
   },{merge:true}).then(()=>{
     navigation.goBack();
     Alert.alert('Successful!');

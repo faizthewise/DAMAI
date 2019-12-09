@@ -21,7 +21,7 @@ const toggleDrawer = (toggle) => {
 
 const JobListScreen = ({navigation}) => {
 
-  const[results,setResults]=useState([]);
+  [results,setResults]=useState([]);
   const[errorMessage,setErrorMessage]=useState('');
   const[openDrawer,setOpenDrawer]=useState(false);
   const dbh = firebase.firestore();

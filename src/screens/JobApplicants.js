@@ -31,7 +31,6 @@ const JobApplicants = ({navigation}) => {
     dbh.collection("jobs").doc(jobID).onSnapshot(function(doc){
       console.log("changes");
       setResult(doc.data());
-      console.log("Number of applicants =>",result.Applicants.length);
       setApplicants(result.Applicants);
       console.log("This is chosen =>",doc.data());
       const chosen = result.assignedTo;

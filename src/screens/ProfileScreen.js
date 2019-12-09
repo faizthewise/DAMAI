@@ -1,9 +1,9 @@
 import React, {Component, useState, useEffect} from 'react';
-import { Modal, ScrollView, View, Text, StyleSheet, FlatList, Alert, Image } from 'react-native';
+import { TouchableOpacity,Modal, ScrollView, View, Text, StyleSheet, FlatList, Alert, Image } from 'react-native';
 import SolidButton from '../components/SolidButton';
 import * as firebase from 'firebase';
 import {FloatingAction} from "react-native-floating-action";
-import {AntDesign} from '@expo/vector-icons';
+import {AntDesign,Entypo} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
@@ -21,30 +21,19 @@ const ProfileScreen = ({navigation}) =>  {
   const actions= [
     {
       text: "Edit Profile",
-      icon: <AntDesign name="pluscircle" />,
+      icon: <AntDesign name="edit" style={{fontSize:16,color:'white'}} />,
       position: 1,
       name: "edit"
     },
     {
-      text: "Request Job",
-      icon: <AntDesign name="pluscircle" />,
-      position: 2,
-      name: "request"
-    },
-    {
       text: "Logout",
-      icon: <AntDesign name="pluscircle" />,
-      position:3,
+      icon: <AntDesign name="logout" style={{fontSize:16,color:'white'}} />,
+      position:2,
       name: "logout"
-    },
-    {
-      text: "Change pp",
-      icon: <AntDesign name="pluscircle" />,
-      position:4,
-      name: "profilepicture"
     }
   ]
   const checkLogin = () =>{
+    console.log("Check login");
     firebase.auth().onAuthStateChanged(user => {
        if(user){
          const uid = firebase.auth().currentUser.uid;
@@ -61,7 +50,7 @@ const ProfileScreen = ({navigation}) =>  {
 
   useEffect(()=>{
     checkLogin();
-  },userProfile);
+  },[]);
 
   useEffect(() =>{
     getPermissionAsync();
@@ -154,10 +143,17 @@ const setImage = (downloadURL) => {
 
     return(
       // console.log({userProfile});
-  <View style={{flex:1}}>
-  <ScrollView style={{flex:1,justifyContent:'center',alignItems:'center',marginTop:40}}>
+  <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+  <ScrollView contentContainerStyle={{marginTop:40}}>
           <View style={{marginVertical:2,alignItems:'center'}}>
-            {upload!=100 ? <Progress.Pie progress={upload/100} size={50} color={rgb(1,198,191)} /> : <Image source={{uri:userProfile.image}} style ={{height:130,width:130,borderRadius:65}} />}
+            {upload!=100 ? <Progress.Pie progress={upload/100} size={50} color={rgb(1,198,191)} /> :
+            <View>
+              <Image source={{uri:userProfile.image}} style ={{height:130,width:130,borderRadius:65}} />
+              <TouchableOpacity onPress={()=> changePP()}>
+                  <Entypo name="edit" style={{fontSize:24,alignSelf:'flex-end',marginTop:-20,color:'rgb(1,198,191)'}} />
+              </TouchableOpacity>
+            </View>
+            }
             <ProfileDetail results={userProfile} />
           </View>
 
@@ -169,13 +165,8 @@ const setImage = (downloadURL) => {
           case 'edit':
             navigation.navigate('EditProfile');
             break;
-          case 'request':
-            break;
           case 'logout':
             handleLogout();
-            break;
-          case 'profilepicture':
-            changePP();
             break;
           default:
             return;

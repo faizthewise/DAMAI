@@ -31,9 +31,11 @@ const HELoginScreen = ({navigation}) => {
   return (
   <View style={{flex:1}}>
     <View style={styles.upperPart}>
-      <LinearGradient colors={['rgb(1,206,201)', 'rgb(1,198,191)','rgb(3,184,177)']} style={{ flex:1 }}>
+      <LinearGradient colors={['rgb(1,206,201)', 'rgb(1,198,191)','rgb(3,184,177)']} style={{ flex:1,    justifyContent:'space-around' }}>
 
-          <Image source={{uri:'https://discordapp.com/assets/e7a3b51fdac2aa5ec71975d257d5c405.png'}} style={{height:200,width:200,alignSelf:'center'}} />
+
+
+          <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/twice-285f4.appspot.com/o/logo%2Fdamai-logo-text.png?alt=media&token=619adad7-1c05-44f2-93b6-4943f1657c3a'}} style={{height:100,width:150,alignSelf:'center'}} />
           <LoginComponent
             email={email}
             onEmailChange={newEmail => setEmail(newEmail)}
@@ -57,7 +59,6 @@ const HELoginScreen = ({navigation}) => {
 const styles= StyleSheet.create({
   upperPart:{
     flex:2,
-    justifyContent:'space-around'
   },
   lowerPart:{
     flex:1

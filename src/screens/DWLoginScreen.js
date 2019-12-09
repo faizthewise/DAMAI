@@ -27,7 +27,7 @@ const DWLoginScreen = ({navigation}) => {
   <View style={{flex:1}}>
     <View style={styles.upperPart}>
 
-          <Image source={{uri:'https://discordapp.com/assets/94db9c3c1eba8a38a1fcf4f223294185.png'}} style={{height:200,width:200,alignSelf:'center'}} />
+          <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/twice-285f4.appspot.com/o/logo%2Fdamai-logo-text.png?alt=media&token=619adad7-1c05-44f2-93b6-4943f1657c3a'}} style={{height:100,width:150,alignSelf:'center'}} />
           <LoginComponent
             email={email}
             onEmailChange={newEmail => setEmail(newEmail)}

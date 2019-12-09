@@ -47,7 +47,7 @@ const navigator = createStackNavigator(
 
 },
 {
-  initialRouteName : 'UserLoading',
+  initialRouteName : 'HELoading',
 
   defaultNavigationOptions: {
     header:null

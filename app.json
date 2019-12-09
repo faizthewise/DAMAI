@@ -30,8 +30,12 @@
 			"NSPhotoLibraryUsageDescription" : "This app would like access to your photo gallery",
 			"NSPhotoLibraryAddUsageDescription" : "This app would like to save photos to your photo gallery",
 			"NSMicrophoneUsageDescriptio" : "would like to use your microphone"
-			
+
 	  }
-    }
+  },
+  "android":{
+    "package": "com.damai.android",
+    "googleServicesFile" : "./google-services.json"
+  }
   }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
+import { View,ScrollView, Text, StyleSheet } from 'react-native';
 import t from 'tcomb-form-native';
 import firebase from 'firebase';
 import SolidButton from '../components/SolidButton';
@@ -35,7 +35,9 @@ const User = t.struct({
   email: Email,
   fullname: t.String,
   password: Password,
-  address : t.String,
+  city : t.String,
+  postcode : t.String,
+  state : t.String,
   gender: Gender,
   contactno: t.Number,
   usertype: UserType,
@@ -88,7 +90,9 @@ const registerUser = (value, uid, email) => {
     email: email,
     bankname: value.bankname,
     bankacc: value.bankacc,
-    city: value.address,
+    city: value.city,
+    postcode: value.postcode,
+    state : value.state,
     rating: "5.0"
 
   })
@@ -127,9 +131,11 @@ export default class RegisterScreen extends Component {
 
   render(){
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>REGISTRATION</Text>
+        <View style={{width:300}}>
         <Form type={User} options={options} value={value} ref={c => this._form = c}/>
+        </View>
         <SolidButton text="Register" onPress={this.handleSubmit} />
       </ScrollView>
 
@@ -140,11 +146,11 @@ export default class RegisterScreen extends Component {
 
 const styles= StyleSheet.create({
   container:{
-    justifyContent:'center',
     alignItems: 'center',
     marginTop:50,
-    padding:20,
     flex:1,
+    justifyContent:'center',
+    padding:40
   },
   title:{
     fontSize:24,

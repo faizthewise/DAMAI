@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "229085541361",
+    "firebase_url": "https://twice-285f4.firebaseio.com",
+    "project_id": "twice-285f4",
+    "storage_bucket": "twice-285f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229085541361:android:3821593caa663efd104a50",
+        "android_client_info": {
+          "package_name": "com.damai.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229085541361-8rt5ohq1ai4fh382r5q0emfdrc4i33q3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSWUxijqY9S2BmIJU8TZX5-gFrBD6Bf5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229085541361-8rt5ohq1ai4fh382r5q0emfdrc4i33q3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

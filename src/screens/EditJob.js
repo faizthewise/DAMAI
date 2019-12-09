@@ -66,14 +66,14 @@ const EditJob = ({navigation}) => {
     console.log('New Value =>', newValue);
     if (newValue != null){
       setDB(newValue,jobID,{navigation});
-    
+
 
     }
 
   }
 
   return (
-  <ScrollView style={styles.container}>
+  <ScrollView contentContainerStyle={styles.container}>
     <Text style={styles.title}>Edit job</Text>
     <Form type={Job} options={options} ref={c => this._form = c} value={value}/>
     <SolidButton text="Save" onPress={()=>handleSubmit()}/>

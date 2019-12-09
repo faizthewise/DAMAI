@@ -1,18 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import {withNavigation} from 'react-navigation';
-import JobDetail from './JobDetail';
+import JobPostedDetail from './JobPostedDetail';
 
-const JobList = ({results,title,navigation}) => {
-
+const JobPostedList = ({results,title,navigation}) => {
   if(!results.length){
   return null;
   }
 
   return (
-  <View style={{marginBottom:-60}}>
-  <Text style={{fontWeight:'bold'}}>{title}</Text>
+  <View style={{marginBottom:-120}}>
+  <Text style={{fontWeight:'bold',color:'white',marginBottom:10, fontSize:16}}>{title}</Text>
   <FlatList
       data={results}
       keyExtractor={(results)=>results.jobid}
@@ -20,9 +18,7 @@ const JobList = ({results,title,navigation}) => {
         return(
           <View style={{marginVertical:5}}>
             <TouchableOpacity onPress={() => navigation.navigate('JobApplicants',{id:item.jobid})}>
-              <LinearGradient colors={['rgb(1,206,201)', 'rgb(1,198,191)','rgb(3,184,177)']} style={{ flex:1,borderRadius:10, }}>
-                <JobDetail result={item} />
-              </LinearGradient>
+                <JobPostedDetail result={item} />
             </TouchableOpacity>
           </View>
   );
@@ -34,4 +30,4 @@ const JobList = ({results,title,navigation}) => {
 
 const styles= StyleSheet.create({});
 
-export default withNavigation(JobList);
+export default withNavigation(JobPostedList);

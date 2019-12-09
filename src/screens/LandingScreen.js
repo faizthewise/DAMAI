@@ -10,7 +10,7 @@ const LandingScreen = ({navigation}) => {
 <ImageBackground source={require('../../assets/carpet-cleaning-services.jpeg')} style={{flex:1}}>
   <LinearGradient colors={['rgba(1,206,201,0.4)', 'rgba(1,198,191,0.4)','rgba(3,184,177,0.6)']} style={{ flex:1 }}>
     <View style={styles.container}>
-      <Image source={{uri:'https://discordapp.com/assets/e7a3b51fdac2aa5ec71975d257d5c405.png'}} style={{height:200,width:200,position:'absolute',top:10}} />
+      <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/twice-285f4.appspot.com/o/logo%2Fdamai-logo-text.png?alt=media&token=619adad7-1c05-44f2-93b6-4943f1657c3a'}} style={{height:100,width:150,position:'absolute',top:10}} />
       <SolidButton text="Home Employer" onPress={() => navigation.navigate('HELogin')}  />
       <OutlineButton text="Domestic Worker" onPress={() => navigation.navigate('DWLogin')}  />
     </View>
