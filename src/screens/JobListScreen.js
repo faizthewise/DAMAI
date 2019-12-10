@@ -33,7 +33,7 @@ const JobListScreen = ({navigation}) => {
   const searchApi = (service,location) =>{
     console.log("SerachAPI called");
       if(service===''){
-        const response = dbh.collection("jobs").where("approval","==",true).where("vacant","==",true);
+        const response = dbh.collection("jobs").where("approval","==",true).where("status","==",'vacant');
         response.onSnapshot(function(querySnapshot){
 
             querySnapshot.forEach(function(doc){
@@ -130,7 +130,7 @@ const [location,setLocation] = useState({
       name:"Sepang"
     }
   ],
-  placeHolderText: "Select service required",
+  placeHolderText: "Select preferred location",
   selectedText: ""
 });
 
@@ -153,57 +153,60 @@ const getValue = () =>{
     return(
     <View style={styles.Drawer}>
     <TouchableOpacity
-    style={{backgroundColor:'#F2F2F2',width:40,height:40,borderRadius:10,padding:5}}
+    style={{backgroundColor:'#F2F2F2',width:40,height:40,borderRadius:10,padding:5,alignSelf:'flex-end'}}
     onPress={() => {
       const toggle = toggleDrawer(openDrawer);
       setOpenDrawer(toggle);
     }}
     >
-      <AntDesign name="filter" style={{fontSize:24,alignSelf:'flex-start'}} />
+      <AntDesign name="filter" style={{fontSize:24}} />
     </TouchableOpacity>
-    <Text>Service required:</Text>
-    <RNPicker
-          dataSource={service.dataSource}
-          dummyDataSource={service.dataSource}
-          defaultValue={false}
-          pickerTitle={"Service required"}
-          showSearchBar={false}
-          disablePicker={false}
-          changeAnimation={"none"}
-          showPickerTitle={true}
-          pickerStyle={styles.pickerStyle}
-          pickerItemTextStyle={styles.listTextViewStyle}
-          selectedLabel={service.selectedText}
-          placeHolderLabel={service.placeHolderText}
-          selectLabelTextStyle={styles.selectLabelTextStyle}
-          placeHolderTextStyle={styles.placeHolderTextStyle}
-          dropDownImageStyle={styles.dropDownImageStyle}
-          dropDownImage={require("../../assets/res/ic_drop_down.png")}
-          selectedValue={(index, item) => selectedService(index, item)}
-        />
+    <View style={{marginBottom:20}}>
+      <Text style={{marginVertical:20}}>Service required:</Text>
+      <RNPicker
+            dataSource={service.dataSource}
+            dummyDataSource={service.dataSource}
+            defaultValue={false}
+            pickerTitle={"Service required"}
+            showSearchBar={false}
+            disablePicker={false}
+            changeAnimation={"none"}
+            showPickerTitle={true}
+            pickerStyle={styles.pickerStyle}
+            pickerItemTextStyle={styles.listTextViewStyle}
+            selectedLabel={service.selectedText}
+            placeHolderLabel={service.placeHolderText}
+            selectLabelTextStyle={styles.selectLabelTextStyle}
+            placeHolderTextStyle={styles.placeHolderTextStyle}
+            dropDownImageStyle={styles.dropDownImageStyle}
+            dropDownImage={require("../../assets/res/ic_drop_down.png")}
+            selectedValue={(index, item) => selectedService(index, item)}
+          />
+      </View>
 
-
-    <Text>Location</Text>
-    <RNPicker
-          dataSource={location.dataSource}
-          dummyDataSource={location.dataSource}
-          defaultValue={false}
-          pickerTitle={"Select location"}
-          showSearchBar={true}
-          disablePicker={false}
-          changeAnimation={"none"}
-          searchBarPlaceHolder={"Search....."}
-          showPickerTitle={true}
-          pickerStyle={styles.pickerStyle}
-          pickerItemTextStyle={styles.listTextViewStyle}
-          selectedLabel={location.selectedText}
-          placeHolderLabel={location.placeHolderText}
-          selectLabelTextStyle={styles.selectLabelTextStyle}
-          placeHolderTextStyle={styles.placeHolderTextStyle}
-          dropDownImageStyle={styles.dropDownImageStyle}
-          dropDownImage={require("../../assets/res/ic_drop_down.png")}
-          selectedValue={(index, item) => selectedLocation(index, item)}
-        />
+    <View style={{marginBottom:40}}>
+      <Text style={{marginVertical:20}}>Location</Text>
+      <RNPicker
+            dataSource={location.dataSource}
+            dummyDataSource={location.dataSource}
+            defaultValue={false}
+            pickerTitle={"Select location"}
+            showSearchBar={true}
+            disablePicker={false}
+            changeAnimation={"none"}
+            searchBarPlaceHolder={"Search....."}
+            showPickerTitle={true}
+            pickerStyle={styles.pickerStyle}
+            pickerItemTextStyle={styles.listTextViewStyle}
+            selectedLabel={location.selectedText}
+            placeHolderLabel={location.placeHolderText}
+            selectLabelTextStyle={styles.selectLabelTextStyle}
+            placeHolderTextStyle={styles.placeHolderTextStyle}
+            dropDownImageStyle={styles.dropDownImageStyle}
+            dropDownImage={require("../../assets/res/ic_drop_down.png")}
+            selectedValue={(index, item) => selectedLocation(index, item)}
+          />
+      </View>
     <SolidButton text="Search" onPress={() => getValue()}/>
     <SolidButton text="Reset" onPress={() => searchApi('','')}/>
 
@@ -212,31 +215,30 @@ const getValue = () =>{
   }
 
   return (
-  <LinearGradient colors={['rgb(1,206,201)', 'rgb(1,198,191)','rgb(3,184,177)']} style={{ flex:1 }}>
   <View style={{flex:1,alignItems:'center'}}>
   <MenuDrawer
           open={openDrawer}
           drawerContent={drawerContent()}
-          drawerPercentage={65}
+          drawerPercentage={75}
           animationTime={250}
           overlay={true}
           opacity={0.4}
         >
-  <View style={{flex:1,margin:20}}>
+  <View style={{flex:1,margin:30}}>
 
         <View style={{flexDirection:'row',marginBottom:15}}>
 
             <TouchableOpacity
-              style={{backgroundColor:'#F2F2F2',width:40,height:40,borderRadius:10,padding:5}}
+              style={{backgroundColor:'rgb(1,198,191)',width:40,height:40,borderRadius:10,padding:5,alignSelf:'flex-start'}}
               onPress={() => {
                 console.log('Pressed');
                 const toggle = toggleDrawer(openDrawer);
                 setOpenDrawer(toggle);
               }}
               >
-                <AntDesign name="filter" style={{fontSize:24}} />
+                <AntDesign name="filter" style={{fontSize:24,color:'white'}} />
             </TouchableOpacity>
-
+            <Text style={{fontSize:24,fontWeight:'bold',marginBottom:20,marginLeft:60}}>Available Jobs</Text>
         </View>
       {errorMessage ? <Text>{errorMessage}</Text> :null }
 
@@ -246,11 +248,13 @@ const getValue = () =>{
             keyExtractor={(results)=>results.id}
             renderItem={({item}) =>{
               return(
-                <View style={{marginVertical:5,backgroundColor:'white', borderRadius:20}}>
-                  <TouchableOpacity onPress={() => navigation.navigate('JobDetail', {id:item.jobid})}>
-                    <JobDetail result={item} />
-                  </TouchableOpacity>
-                </View>
+                <LinearGradient colors={['rgb(1,206,201)', 'rgb(1,198,191)','rgb(3,184,177)']} style={styles.card}>
+                  <View>
+                    <TouchableOpacity onPress={() => navigation.navigate('JobDetail', {id:item.jobid})}>
+                      <JobDetail result={item} />
+                    </TouchableOpacity>
+                  </View>
+                </LinearGradient>
               );
             }}
         />
@@ -260,12 +264,12 @@ const getValue = () =>{
     </View>
   </MenuDrawer>
   </View>
-  </LinearGradient>
   );
 };
 
 const styles= StyleSheet.create({
   Drawer:{flex:1,
+          alignItems:'center',
           backgroundColor: "#FEFEFE",
           padding: 20,
           shadowColor: "#000",
@@ -345,7 +349,20 @@ const styles= StyleSheet.create({
     shadowColor: "#d3d3d3",
     borderRadius: 5,
     flexDirection: "row"
-  }
+  },
+  card:{
+    marginVertical:5,
+    borderRadius:20,
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4},
+
+
 });
 
 export default JobListScreen;

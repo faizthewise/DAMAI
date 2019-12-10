@@ -1,5 +1,5 @@
 import React, {Component, useState} from 'react';
-import { ScrollView, Text, StyleSheet, Alert } from 'react-native';
+import { View,ScrollView, Text, StyleSheet, Alert } from 'react-native';
 import t from 'tcomb-form-native';
 import firebase from 'firebase';
 import _ from 'lodash';
@@ -72,7 +72,7 @@ export default class AddJob extends React.Component {
                 icon: "https://cdn4.iconfinder.com/data/icons/library-glyph/64/Library__Library_Book_Open_Reading_Newspaper-512.png",
                 jobtype: value.jobtype,
                 location: value.location,
-                startdate: "23 November 2019",
+                startdate: "13 December 2019",
                 title: value.title,
                 jobdescription: value.jobdescription,
                 image: info.image,
@@ -123,7 +123,9 @@ export default class AddJob extends React.Component {
   return (
   <ScrollView contentContainerStyle={styles.container}>
     <Text style={styles.title}>Add new job</Text>
-    <Form type={Job} options={options} ref={c => this._form = c}/>
+    <View style={{width:300}}>
+      <Form type={Job} options={options} ref={c => this._form = c}/>
+    </View>
     <SolidButton text="Request Service" onPress={this.handleSubmit}/>
   </ScrollView>
   );
@@ -132,8 +134,7 @@ export default class AddJob extends React.Component {
 
 const styles= StyleSheet.create({
   container:{
-    justifyContent:'center',
-    alignItems: 'center',
+    alignItems:'center',
     marginTop:50,
     padding:20,
     flex:1,

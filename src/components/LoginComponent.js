@@ -33,7 +33,6 @@ const LoginComponent = ({email,password,onEmailChange,onPasswordChange, onPress,
     </View>
 
     <View style={{width:300,marginBottom:30}}>
-      <Text style={{fontSize:10, alignSelf:'flex-end'}}>Forgot Password</Text>
       <Text style={{alignSelf:'flex-end',color:'red'}}>{errorMessage}</Text>
     </View>
 

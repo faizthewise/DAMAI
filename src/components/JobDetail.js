@@ -31,7 +31,7 @@ const JobDetail = ({result}) => {
 
 const styles= StyleSheet.create({
   outerContainer:{
-    height:100,
+    height:110,
     width:350,
     borderRadius:10,
     flexDirection:'row',

@@ -31,7 +31,8 @@ const ApplicantDetail = ({result}) => {
       <View style={styles.innerContainer}>
 
         <Text style={{fontWeight:'bold',fontSize:18,width:150}}>{info.fullname}</Text>
-        <Text>{info.location}</Text>
+        {info.gender=='M' ? <Text>Male</Text> : <Text>Female</Text>}
+        <Text>{info.city}, {info.postcode}, {info.state}</Text>
 
       </View>
       <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
@@ -44,6 +45,7 @@ const ApplicantDetail = ({result}) => {
 
 const styles= StyleSheet.create({
   outerContainer:{
+    backgroundColor:'white',
     height:100,
     width:350,
     borderRadius:10,
@@ -51,8 +53,15 @@ const styles= StyleSheet.create({
     alignItems:'center',
     justifyContent:'space-around',
     flex:1,
-    borderWidth:2,
-    borderColor: 'grey'
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   innerContainer:{
     flexDirection:'column',

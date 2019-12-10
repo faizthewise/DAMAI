@@ -1,8 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import * as firebase from 'firebase';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert, Image } from 'react-native';
 import SolidButton from '../components/SolidButton';
-import OutlineButton from '../components/OutlineButton';
+import RedButton from '../components/RedButton';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const ApplicantDetailsScreen = ({navigation}) => {
   const applicantID = navigation.getParam('applicantID');
@@ -30,19 +31,45 @@ const ApplicantDetailsScreen = ({navigation}) => {
 
 
   return (
-  <View style={{flex:1,marginTop:30}}>
-    <Text style={{fontSize:24,fontWeight:'bold'}}>Applicant Details</Text>
-    <Text>{result.fullname}</Text>
-    <Text>{result.phonenumber}</Text>
-    <Text>{result.city}</Text>
-    <Text>{result.sex}</Text>
-    <Text>{result.rating}</Text>
+  <LinearGradient colors={['rgba(1,206,201,1)', 'rgba(1,198,191,1)','rgba(3,184,177,1)']} style={{ flex:1 }}>
+  <View style={styles.container}>
+    <Text style={{fontSize:24,fontWeight:'bold',color:'white'}}>Applicant Details</Text>
+    <Image source={{uri:result.image}} style ={{height:130,width:130,borderRadius:65}} />
+    <View style={styles.card}>
+      <View style={{marginBottom:10}}>
+        <Text style={styles.title}>NAME</Text>
+        <Text style={styles.description}>{result.fullname}</Text>
+      </View>
+      <View style={{marginBottom:10}}>
+        <Text style={styles.title}>PHONE NUMBER</Text>
+        <Text style={styles.description}>{result.phonenumber}</Text>
+      </View>
+      <View style={{marginBottom:10}}>
+        <Text style={styles.title}>ADDRESS</Text>
+        <Text style={styles.description}>{result.city}, {result.postcode}, {result.state}</Text>
+      </View>
+      <View style={{marginBottom:10}}>
+        <Text style={styles.title}>GENDER</Text>
+        <Text style={styles.description}>{result.sex}</Text>
+      </View>
+      <View style={{marginBottom:10}}>
+        <Text style={styles.title}>RATING</Text>
+        <Text style={styles.description}>{result.rating}</Text>
+      </View>
 
-    <View style={{flex:1,flexDirection:'row'}} >
-      <SolidButton text="Accept" onPress={()=> assignJob(jobID,applicantID,{navigation})}/>
-      <SolidButton text="Reject" onPress={() => rejectApplicant(jobID,applicantID,{navigation})}/>
+
+
+
     </View>
+
+    <View>
+      <SolidButton text="Accept" onPress={()=> assignJob(jobID,applicantID,{navigation})}/>
+      <RedButton text="Reject" onPress={() => rejectApplicant(jobID,applicantID,{navigation})}/>
+    </View>
+
   </View>
+
+  </LinearGradient>
   );
 };
 
@@ -75,6 +102,31 @@ const rejectApplicant = (jobID,applicantID,{navigation}) => {
     });
   }
 
-const styles= StyleSheet.create({});
+const styles= StyleSheet.create({
+  container:{
+    flex:1,
+    marginTop:30,
+    alignItems: 'center',
+    justifyContent : 'space-between'
+  },
+  card:{
+    padding:20,
+    backgroundColor:'white',
+    borderRadius:10,
+    height: 300,
+    width: 320,
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  description:{fontSize:16,fontWeight:'bold',marginBottom:10},
+  title:{fontSize:12}
+});
 
 export default ApplicantDetailsScreen;

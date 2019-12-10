@@ -101,7 +101,9 @@ const EditProfile = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Edit Profile</Text>
+      <View style={{width:350}}>
       <Form type={User} options={options} ref={c => this._form = c} value={value}/>
+      </View>
       <SolidButton text="Save" onPress={()=>handleSubmit()}/>
     </ScrollView>
   );

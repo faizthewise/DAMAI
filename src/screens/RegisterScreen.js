@@ -93,7 +93,8 @@ const registerUser = (value, uid, email) => {
     city: value.city,
     postcode: value.postcode,
     state : value.state,
-    rating: "5.0"
+    rating: 0,
+    reviewer:0
 
   })
 

@@ -14,25 +14,11 @@ const LowerSectLogin = ({fontColor,onPress}) => {
       <View style={{  height:1, width:200, backgroundColor:`#${fontColor}`,top:10}} />
     </View>
 
-    <View style={styles.iconContainer}>
-      <TouchableOpacity>
-        <Entypo name="facebook-with-circle" style={{color:'#3b5998',fontSize:50}} />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Entypo name="twitter-with-circle" style={{color:'#1da1f2',fontSize:50}} />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Entypo name="google--with-circle" style={{color:'#dd4b39',fontSize:50}} />
-      </TouchableOpacity>
-    </View>
 
-    <View style={{flexDirection:'row'}}>
-      <Text style={{position:'absolute',bottom:30, color:`#${fontColor}`}}>
-        Don't have an account.</Text>
        <TouchableOpacity onPress={() => onPress()}>
-        <Text style={{fontWeight:'bold'}}>Register</Text>
-      </TouchableOpacity>
-    </View>
+        <Text style={{ color:`#${fontColor}`}}>
+        Don't have an account. Register</Text>
+        </TouchableOpacity>
   </View>
   );
 };
